@@ -1,0 +1,8 @@
+export { default as Scrollbar } from './scrollbar'
+export { default as CustomImage } from './image'
+export { default as CustomButton } from './button'
+export { ArrowIcon } from './svg'
+export { default as CustomLink } from './link'
+export { default as Marquee } from './marquee'
+export { default as CTA } from './cta'
+export { default as Footer } from './footer'

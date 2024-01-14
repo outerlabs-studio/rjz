@@ -9,8 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cerner/duplicate-package-checker-webpack-plugin": "^2.6.0",
+    "@studio-freight/react-lenis": "^0.0.40",
+    "@vercel/analytics": "^1.1.1",
+    "blurhash": "^2.0.5",
+    "gsap": "^3.12.4",
+    "next": "14.0.4",
     "react": "^18",
+    "react-div-100vh": "^0.7.0",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "react-use": "^17.4.2",
+    "sharp": "^0.33.1",
+    "styled-components": "^6.1.6",
+    "webgl-fluid-enhanced": "^0.5.2"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^14.0.4",
+    "critters": "^0.0.20",
+    "prettier": "^3.1.1"
   }
 }
