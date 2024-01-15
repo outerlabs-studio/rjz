@@ -1,10 +1,11 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Tempus } from 'lib'
-import { CTA, Footer, Scrollbar } from 'components'
+import { CTA, Footer, Loader, Scrollbar } from 'components'
 import { useIsTouchDevice } from 'hooks'
-import { Lenis } from '@studio-freight/react-lenis'
+import { Lenis, useLenis } from '@studio-freight/react-lenis'
 import { GlobalStyle, normalTheme } from 'styles'
 import gsap from 'gsap'
 
@@ -31,12 +32,25 @@ if (typeof window !== 'undefined') {
 
 export default function Template({ children }) {
   const touchDevice = useIsTouchDevice()
+  const [showLoader, setShowLoader] = useState(true)
+  const lenis = useLenis()
+
+  useEffect(() => {
+    if (lenis) {
+      if (showLoader) {
+        lenis.stop()
+      } else {
+        lenis.start()
+      }
+    }
+  }, [showLoader, lenis])
 
   return (
     <Lenis root>
       <ThemeProvider theme={normalTheme}>
         <GlobalStyle />
         {touchDevice ? null : <Scrollbar />}
+        {showLoader ? <Loader setShowLoader={setShowLoader} /> : null}
         <main>{children}</main>
         <CTA />
         <Footer />

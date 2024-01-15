@@ -26,7 +26,7 @@ const CTA = () => {
     else
       webGLFluidEnhanced.simulation(canvasRef.current, {
         PRESSURE: 0.2,
-        // SUNRAYS: false,
+        SUNRAYS: true,
         // START_SPLATS: 0,
         // SPLAT_AMOUNT: 10,
         SPLAT_FORCE: 1500,

@@ -16,13 +16,15 @@ import {
 import gsap from 'gsap'
 
 const Hero = () => {
+  const sectionTarget = useRef()
   const descriptionText = `We provide highly tailored and expert-led safety management services, backed by 20 years of experience.`
   const titleTarget = useRef([])
   const descriptionTarget = useRef([])
+  const buttonTarget = useRef()
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      let tl = gsap.timeline()
+      let tl = gsap.timeline({ delay: 4 })
 
       tl.from(
         titleTarget.current,
@@ -33,23 +35,33 @@ const Hero = () => {
           stagger: 0.1,
         },
         0,
-      ).from(
-        descriptionTarget.current,
-        {
-          yPercent: 100,
-          ease: 'power4.out',
-          duration: 1,
-          stagger: 0.02,
-        },
-        0,
       )
+        .from(
+          descriptionTarget.current,
+          {
+            yPercent: 100,
+            ease: 'power4.out',
+            duration: 1,
+            stagger: 0.02,
+          },
+          0,
+        )
+        .from(
+          buttonTarget.current,
+          {
+            opacity: 0,
+            ease: 'power4.out',
+            duration: 1,
+          },
+          0.5,
+        )
     })
 
     return () => ctx.revert()
   }, [])
 
   return (
-    <HeroWrapper>
+    <HeroWrapper ref={sectionTarget}>
       <Container style={{ height: 'inherit' }}>
         <ContentWrapper>
           <TextWrapper>
@@ -96,9 +108,17 @@ const Hero = () => {
                   </span>
                 ))}
               </NormalText>
-              <CustomButton href="/about">Explore our services</CustomButton>
+              <span ref={buttonTarget}>
+                <CustomButton href="/about">Explore our services</CustomButton>
+              </span>
             </DescriptionWrapper>
-            <NormalText className="scroll-text">Scroll to explore</NormalText>
+            <NormalText className="scroll-text">
+              <span className="overflow">
+                <span ref={(el) => descriptionTarget.current.push(el)}>
+                  Scroll to explore
+                </span>
+              </span>
+            </NormalText>
           </LineWrapper>
         </ContentWrapper>
         <ForeGroundImage>

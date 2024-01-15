@@ -43,7 +43,7 @@ export const HugeText = styled.p`
 export const Display = css`
   font-size: 12.5vw; // 180px
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.1;
 
   ${media.desktop`
     font-size: 10vw;
